@@ -369,7 +369,7 @@ AAC_ENCODER_ERROR FDKaacEnc_InitChannelMapping(CHANNEL_MODE mode,
       return AAC_ENC_UNSUPPORTED_CHANNELCONFIG;
   };
 
-  FDK_ASSERT(cm->nElements <= ((8)));
+  FDK_ASSERT(cm->nElements <= ((2)));
 
   return AAC_ENC_OK;
 }

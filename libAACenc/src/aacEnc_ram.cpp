@@ -132,12 +132,12 @@ C_ALLOC_MEM(Ram_aacEnc_AacEncoder, struct AAC_ENC, 1)
    from PsyInputBuffer.
 */
 
-C_ALLOC_MEM2(Ram_aacEnc_PsyElement, PSY_ELEMENT, 1, ((8)))
+C_ALLOC_MEM2(Ram_aacEnc_PsyElement, PSY_ELEMENT, 1, ((2)))
 
 C_ALLOC_MEM(Ram_aacEnc_PsyInternal, PSY_INTERNAL, 1)
-C_ALLOC_MEM2(Ram_aacEnc_PsyStatic, PSY_STATIC, 1, (8))
+C_ALLOC_MEM2(Ram_aacEnc_PsyStatic, PSY_STATIC, 1, (2))
 
-C_ALLOC_MEM2(Ram_aacEnc_PsyInputBuffer, INT_PCM, MAX_INPUT_BUFFER_SIZE, (8))
+C_ALLOC_MEM2(Ram_aacEnc_PsyInputBuffer, INT_PCM, MAX_INPUT_BUFFER_SIZE, (2))
 
 PSY_DYNAMIC *GetRam_aacEnc_PsyDynamic(int n, UCHAR *dynamic_RAM) {
   FDK_ASSERT(dynamic_RAM != 0);
@@ -154,8 +154,8 @@ PSY_DYNAMIC *GetRam_aacEnc_PsyDynamic(int n, UCHAR *dynamic_RAM) {
 */
 C_ALLOC_MEM2(Ram_aacEnc_PsyOut, PSY_OUT, 1, (1))
 
-C_ALLOC_MEM2(Ram_aacEnc_PsyOutElements, PSY_OUT_ELEMENT, 1, (1) * ((8)))
-C_ALLOC_MEM2(Ram_aacEnc_PsyOutChannel, PSY_OUT_CHANNEL, 1, (1) * (8))
+C_ALLOC_MEM2(Ram_aacEnc_PsyOutElements, PSY_OUT_ELEMENT, 1, (1) * ((2)))
+C_ALLOC_MEM2(Ram_aacEnc_PsyOutChannel, PSY_OUT_CHANNEL, 1, (1) * (2))
 
 /*
    The structure QC_STATE contains preinitialized settings and quantizer
@@ -170,8 +170,8 @@ C_ALLOC_MEM2(Ram_aacEnc_PsyOutChannel, PSY_OUT_CHANNEL, 1, (1) * (8))
 C_ALLOC_MEM(Ram_aacEnc_QCstate, QC_STATE, 1)
 C_ALLOC_MEM(Ram_aacEnc_AdjustThreshold, ADJ_THR_STATE, 1)
 
-C_ALLOC_MEM2(Ram_aacEnc_AdjThrStateElement, ATS_ELEMENT, 1, ((8)))
-C_ALLOC_MEM2(Ram_aacEnc_ElementBits, ELEMENT_BITS, 1, ((8)))
+C_ALLOC_MEM2(Ram_aacEnc_AdjThrStateElement, ATS_ELEMENT, 1, ((2)))
+C_ALLOC_MEM2(Ram_aacEnc_ElementBits, ELEMENT_BITS, 1, ((2)))
 C_ALLOC_MEM(Ram_aacEnc_BitCntrState, struct BITCNTR_STATE, 1)
 
 INT *GetRam_aacEnc_BitLookUp(int n, UCHAR *dynamic_RAM) {
@@ -197,7 +197,7 @@ INT *GetRam_aacEnc_MergeGainLookUp(int n, UCHAR *dynamic_RAM) {
 */
 
 C_ALLOC_MEM2(Ram_aacEnc_QCout, QC_OUT, 1, (1))
-C_ALLOC_MEM2(Ram_aacEnc_QCelement, QC_OUT_ELEMENT, 1, (1) * ((8)))
+C_ALLOC_MEM2(Ram_aacEnc_QCelement, QC_OUT_ELEMENT, 1, (1) * ((2)))
 QC_OUT_CHANNEL *GetRam_aacEnc_QCchannel(int n, UCHAR *dynamic_RAM) {
   FDK_ASSERT(dynamic_RAM != 0);
   /* The reinterpret_cast is used to suppress a compiler warning. We know that

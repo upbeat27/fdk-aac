@@ -137,7 +137,7 @@ typedef struct {
   INT nChannels;
   INT nChannelsEff;
   INT nElements;
-  ELEMENT_INFO elInfo[((8))];
+  ELEMENT_INFO elInfo[((2))];
 } CHANNEL_MAPPING;
 
 typedef struct {
@@ -235,8 +235,8 @@ typedef struct {
 } QC_OUT_ELEMENT;
 
 typedef struct {
-  QC_OUT_ELEMENT *qcElement[((8))];
-  QC_OUT_CHANNEL *pQcOutChannels[(8)];
+  QC_OUT_ELEMENT *qcElement[((2))];
+  QC_OUT_CHANNEL *pQcOutChannels[(2)];
   QC_OUT_EXTENSION extension[(2 + 2)]; /* global extension payload */
   INT nExtensions;    /* number of extension payloads for this AU */
   INT maxDynBits;     /* maximal allowed dynamic bits in frame */
@@ -288,7 +288,7 @@ typedef struct {
 
   PADDING padding;
 
-  ELEMENT_BITS *elementBits[((8))];
+  ELEMENT_BITS *elementBits[((2))];
   BITCNTR_STATE *hBitCounter;
   ADJ_THR_STATE *hAdjThr;
 

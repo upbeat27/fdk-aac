@@ -152,9 +152,9 @@ typedef struct SBR_ELEMENT {
 } SBR_ELEMENT, *HANDLE_SBR_ELEMENT;
 
 typedef struct SBR_ENCODER {
-  HANDLE_SBR_ELEMENT sbrElement[(8)];
-  HANDLE_SBR_CHANNEL pSbrChannel[(8)];
-  QMF_FILTER_BANK QmfAnalysis[(8)];
+  HANDLE_SBR_ELEMENT sbrElement[(2)];
+  HANDLE_SBR_CHANNEL pSbrChannel[(2)];
+  QMF_FILTER_BANK QmfAnalysis[(2)];
   DOWNSAMPLER lfeDownSampler;
   int lfeChIdx;     /* -1 default for no lfe, else assign channel index. */
   int noElements;   /* Number of elements. */

@@ -124,8 +124,8 @@ typedef struct {
 
 typedef struct {
   PSY_CONFIGURATION psyConf[2]; /* LONG / SHORT */
-  PSY_ELEMENT *psyElement[((8))];
-  PSY_STATIC *pStaticChannels[(8)];
+  PSY_ELEMENT *psyElement[((2))];
+  PSY_STATIC *pStaticChannels[(2)];
   PSY_DYNAMIC *psyDynamic;
   INT granuleLength;
 

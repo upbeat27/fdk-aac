@@ -211,8 +211,8 @@ typedef struct {
  * library.
  */
 typedef struct {
-  UCHAR data[(1)][(8)][MAX_PAYLOAD_SIZE]; /*!< extension payload data buffer */
-  UINT dataSize[(1)][(8)]; /*!< extension payload data size in bits */
+  UCHAR data[(1)][(2)][MAX_PAYLOAD_SIZE]; /*!< extension payload data buffer */
+  UINT dataSize[(1)][(2)]; /*!< extension payload data size in bits */
 } SBRENC_EXT_PAYLOAD;
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -760,8 +760,8 @@ static INT aacEncoder_LimitBitrate(const HANDLE_TRANSPORTENC hTpEnc,
      * element. */
     do {
       int e;
-      SBR_ELEMENT_INFO sbrElInfo[((8))];
-      FDK_ASSERT(cm.nElements <= ((8)));
+      SBR_ELEMENT_INFO sbrElInfo[((2))];
+      FDK_ASSERT(cm.nElements <= ((2)));
 
       initialBitrate = adjustedBitrate;
 
@@ -1304,7 +1304,7 @@ static AACENC_ERROR aacEncInit(HANDLE_AACENCODER hAacEncoder, ULONG InitFlags,
       ((InitFlags & AACENC_INIT_CONFIG) || (InitFlags & AACENC_INIT_STATES))) {
     INT sbrError;
     UINT initFlag = 0;
-    SBR_ELEMENT_INFO sbrElInfo[(8)];
+    SBR_ELEMENT_INFO sbrElInfo[(2)];
     CHANNEL_MAPPING channelMapping;
     CHANNEL_MODE channelMode = isPsActive(hAacConfig->audioObjectType)
                                    ? config->userChannelMode
@@ -1319,7 +1319,7 @@ static AACENC_ERROR aacEncInit(HANDLE_AACENCODER hAacEncoder, ULONG InitFlags,
     }
 
     /* Check return value and if the SBR encoder can handle enough elements */
-    if (channelMapping.nElements > (8)) {
+    if (channelMapping.nElements > (2)) {
       return AACENC_INIT_ERROR;
     }
 
@@ -1521,8 +1521,8 @@ AACENC_ERROR aacEncOpen(HANDLE_AACENCODER *phAacEncoder, const UINT encModules,
 
   /* Determine max channel configuration. */
   if (maxChannels == 0) {
-    hAacEncoder->nMaxAacChannels = (8);
-    hAacEncoder->nMaxSbrChannels = (8);
+    hAacEncoder->nMaxAacChannels = (2);
+    hAacEncoder->nMaxSbrChannels = (2);
   } else {
     hAacEncoder->nMaxAacChannels = (maxChannels & 0x00FF);
     if ((hAacEncoder->encoder_modis & ENC_MODE_FLAG_SBR)) {
@@ -1531,16 +1531,16 @@ AACENC_ERROR aacEncOpen(HANDLE_AACENCODER *phAacEncoder, const UINT encModules,
                                          : hAacEncoder->nMaxAacChannels;
     }
 
-    if ((hAacEncoder->nMaxAacChannels > (8)) ||
-        (hAacEncoder->nMaxSbrChannels > (8))) {
+    if ((hAacEncoder->nMaxAacChannels > (2)) ||
+        (hAacEncoder->nMaxSbrChannels > (2))) {
       err = AACENC_INVALID_CONFIG;
       goto bail;
     }
   } /* maxChannels==0 */
 
   /* Max number of elements could be tuned any more. */
-  hAacEncoder->nMaxAacElements = fixMin(((8)), hAacEncoder->nMaxAacChannels);
-  hAacEncoder->nMaxSbrElements = fixMin((8), hAacEncoder->nMaxSbrChannels);
+  hAacEncoder->nMaxAacElements = fixMin(((2)), hAacEncoder->nMaxAacChannels);
+  hAacEncoder->nMaxSbrElements = fixMin((2), hAacEncoder->nMaxSbrChannels);
 
   /* In case of memory overlay, allocate memory out of libraries */
 
@@ -1939,7 +1939,7 @@ AACENC_ERROR aacEncEncode(const HANDLE_AACENCODER hAacEncoder,
       goto bail;
     } else {
       /* Add SBR extension payload */
-      for (i = 0; i < (8); i++) {
+      for (i = 0; i < (2); i++) {
         if (hAacEncoder->pSbrPayload->dataSize[nPayload][i] > 0) {
           hAacEncoder->extPayload[nExtensions].pData =
               hAacEncoder->pSbrPayload->data[nPayload][i];

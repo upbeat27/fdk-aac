@@ -127,39 +127,39 @@ C_AALLOC_MEM(Ram_SbrDynamic_RAM, FIXP_DBL,
   in module sbr_ram and sbr rom
 */
 C_ALLOC_MEM(Ram_SbrEncoder, SBR_ENCODER, 1)
-C_ALLOC_MEM2(Ram_SbrChannel, SBR_CHANNEL, 1, (8))
-C_ALLOC_MEM2(Ram_SbrElement, SBR_ELEMENT, 1, (8))
+C_ALLOC_MEM2(Ram_SbrChannel, SBR_CHANNEL, 1, (2))
+C_ALLOC_MEM2(Ram_SbrElement, SBR_ELEMENT, 1, (2))
 
 /*! Filter states for QMF-analysis. <br>
   Dimension: #MAXNRSBRCHANNELS * #SBR_QMF_FILTER_LENGTH
 */
-C_AALLOC_MEM2_L(Ram_Sbr_QmfStatesAnalysis, FIXP_QAS, 640, (8), SECT_DATA_L1)
+C_AALLOC_MEM2_L(Ram_Sbr_QmfStatesAnalysis, FIXP_QAS, 640, (2), SECT_DATA_L1)
 
 /*! Matrix holding the quota values for all estimates, all channels
   Dimension #MAXNRSBRCHANNELS * +#SBR_QMF_CHANNELS* #MAX_NO_OF_ESTIMATES
 */
-C_ALLOC_MEM2_L(Ram_Sbr_quotaMatrix, FIXP_DBL, (MAX_NO_OF_ESTIMATES * 64), (8),
+C_ALLOC_MEM2_L(Ram_Sbr_quotaMatrix, FIXP_DBL, (MAX_NO_OF_ESTIMATES * 64), (2),
                SECT_DATA_L1)
 
 /*! Matrix holding the sign values for all estimates, all channels
   Dimension #MAXNRSBRCHANNELS * +#SBR_QMF_CHANNELS* #MAX_NO_OF_ESTIMATES
 */
-C_ALLOC_MEM2(Ram_Sbr_signMatrix, INT, (MAX_NO_OF_ESTIMATES * 64), (8))
+C_ALLOC_MEM2(Ram_Sbr_signMatrix, INT, (MAX_NO_OF_ESTIMATES * 64), (2))
 
 /*! Frequency band table (low res) <br>
   Dimension #MAX_FREQ_COEFFS/2+1
 */
-C_ALLOC_MEM2(Ram_Sbr_freqBandTableLO, UCHAR, (MAX_FREQ_COEFFS / 2 + 1), (8))
+C_ALLOC_MEM2(Ram_Sbr_freqBandTableLO, UCHAR, (MAX_FREQ_COEFFS / 2 + 1), (2))
 
 /*! Frequency band table (high res) <br>
   Dimension #MAX_FREQ_COEFFS +1
 */
-C_ALLOC_MEM2(Ram_Sbr_freqBandTableHI, UCHAR, (MAX_FREQ_COEFFS + 1), (8))
+C_ALLOC_MEM2(Ram_Sbr_freqBandTableHI, UCHAR, (MAX_FREQ_COEFFS + 1), (2))
 
 /*! vk matser table <br>
   Dimension #MAX_FREQ_COEFFS +1
 */
-C_ALLOC_MEM2(Ram_Sbr_v_k_master, UCHAR, (MAX_FREQ_COEFFS + 1), (8))
+C_ALLOC_MEM2(Ram_Sbr_v_k_master, UCHAR, (MAX_FREQ_COEFFS + 1), (2))
 
 /*
   Missing harmonics detection
@@ -169,26 +169,26 @@ C_ALLOC_MEM2(Ram_Sbr_v_k_master, UCHAR, (MAX_FREQ_COEFFS + 1), (8))
   Dimension #MAX_NUM_CHANNELS*#MAX_NO_OF_ESTIMATES*#MAX_FREQ_COEFFS]
 */
 C_ALLOC_MEM2(Ram_Sbr_detectionVectors, UCHAR,
-             (MAX_NO_OF_ESTIMATES * MAX_FREQ_COEFFS), (8))
+             (MAX_NO_OF_ESTIMATES * MAX_FREQ_COEFFS), (2))
 
 /*! sbr_prevCompVec[ <br>
   Dimension #MAX_NUM_CHANNELS*#MAX_FREQ_COEFFS]
 */
-C_ALLOC_MEM2(Ram_Sbr_prevEnvelopeCompensation, UCHAR, MAX_FREQ_COEFFS, (8))
+C_ALLOC_MEM2(Ram_Sbr_prevEnvelopeCompensation, UCHAR, MAX_FREQ_COEFFS, (2))
 /*! sbr_guideScfb[ <br>
   Dimension #MAX_NUM_CHANNELS*#MAX_FREQ_COEFFS]
 */
-C_ALLOC_MEM2(Ram_Sbr_guideScfb, UCHAR, MAX_FREQ_COEFFS, (8))
+C_ALLOC_MEM2(Ram_Sbr_guideScfb, UCHAR, MAX_FREQ_COEFFS, (2))
 
 /*! sbr_guideVectorDetected <br>
   Dimension #MAX_NUM_CHANNELS*#MAX_NO_OF_ESTIMATES*#MAX_FREQ_COEFFS]
 */
 C_ALLOC_MEM2(Ram_Sbr_guideVectorDetected, UCHAR,
-             (MAX_NO_OF_ESTIMATES * MAX_FREQ_COEFFS), (8))
+             (MAX_NO_OF_ESTIMATES * MAX_FREQ_COEFFS), (2))
 C_ALLOC_MEM2(Ram_Sbr_guideVectorDiff, FIXP_DBL,
-             (MAX_NO_OF_ESTIMATES * MAX_FREQ_COEFFS), (8))
+             (MAX_NO_OF_ESTIMATES * MAX_FREQ_COEFFS), (2))
 C_ALLOC_MEM2(Ram_Sbr_guideVectorOrig, FIXP_DBL,
-             (MAX_NO_OF_ESTIMATES * MAX_FREQ_COEFFS), (8))
+             (MAX_NO_OF_ESTIMATES * MAX_FREQ_COEFFS), (2))
 
 /*
   Static Parametric Stereo memory
@@ -211,7 +211,7 @@ C_ALLOC_MEM(Ram_ParamStereo, PARAMETRIC_STEREO, 1)
 /*! Energy buffer for envelope extraction <br>
   Dimension #MAXNRSBRCHANNELS * +#SBR_QMF_SLOTS *  #SBR_QMF_CHANNELS
 */
-C_ALLOC_MEM2(Ram_Sbr_envYBuffer, FIXP_DBL, (32 / 2 * 64), (8))
+C_ALLOC_MEM2(Ram_Sbr_envYBuffer, FIXP_DBL, (32 / 2 * 64), (2))
 
 FIXP_DBL* GetRam_Sbr_envYBuffer(int n, UCHAR* dynamic_RAM) {
   FDK_ASSERT(dynamic_RAM != 0);

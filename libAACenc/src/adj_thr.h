@@ -153,8 +153,8 @@ functionname: FDKaacEnc_AdjustThresholds
 description:  adjust thresholds
 *****************************************************************************/
 void FDKaacEnc_AdjustThresholds(
-    ADJ_THR_STATE *const hAdjThr, QC_OUT_ELEMENT *const qcElement[((8))],
-    QC_OUT *const qcOut, const PSY_OUT_ELEMENT *const psyOutElement[((8))],
+    ADJ_THR_STATE *const hAdjThr, QC_OUT_ELEMENT *const qcElement[((2))],
+    QC_OUT *const qcOut, const PSY_OUT_ELEMENT *const psyOutElement[((2))],
     const INT CBRbitrateMode, const CHANNEL_MAPPING *const cm);
 
 /*****************************************************************************

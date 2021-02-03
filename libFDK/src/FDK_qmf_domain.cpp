@@ -125,82 +125,82 @@ C_ALLOC_MEM_OVERLAY(QmfWorkBufferCore7, FIXP_DBL, QMF_WB_SECTION_SIZE,
 /*! Analysis states buffer. <br>
     Dimension: #((8) + (1))                                                   */
 C_AALLOC_MEM2(AnaQmfStates, FIXP_DBL, 10 * QMF_DOMAIN_MAX_ANALYSIS_QMF_BANDS,
-              ((8) + (1)))
+              ((2) + (1)))
 
 /*! Synthesis states buffer. <br>
     Dimension: #((8) + (1))                                                  */
 C_AALLOC_MEM2(SynQmfStates, FIXP_QSS, 9 * QMF_DOMAIN_MAX_SYNTHESIS_QMF_BANDS,
-              ((8) + (1)))
+              ((2) + (1)))
 
 /*! Pointer to real qmf data for each time slot. <br>
     Dimension: #((8) + (1))                                                   */
 C_ALLOC_MEM2(QmfSlotsReal, FIXP_DBL *,
              QMF_DOMAIN_MAX_TIMESLOTS + QMF_DOMAIN_MAX_OV_TIMESLOTS,
-             ((8) + (1)))
+             ((2) + (1)))
 
 /*! Pointer to imaginary qmf data for each time slot. <br>
     Dimension: #((8) + (1))                                                   */
 C_ALLOC_MEM2(QmfSlotsImag, FIXP_DBL *,
              QMF_DOMAIN_MAX_TIMESLOTS + QMF_DOMAIN_MAX_OV_TIMESLOTS,
-             ((8) + (1)))
+             ((2) + (1)))
 
 /*! QMF overlap buffer. <br>
     Dimension: #((8) + (1))                                                   */
 C_AALLOC_MEM2(QmfOverlapBuffer, FIXP_DBL,
               2 * QMF_DOMAIN_MAX_OV_TIMESLOTS * QMF_DOMAIN_MAX_QMF_PROC_BANDS,
-              ((8) + (1)))
+              ((2) + (1)))
 
 /*! Analysis states buffer. <br>
     Dimension: #((8) + (1))                                                   */
 C_AALLOC_MEM2(AnaQmfStates16, FIXP_DBL, 10 * QMF_DOMAIN_ANALYSIS_QMF_BANDS_16,
-              ((8) + (1)))
+              ((2) + (1)))
 /*! Analysis states buffer. <br>
     Dimension: #((8) + (1))                                                   */
 C_AALLOC_MEM2(AnaQmfStates24, FIXP_DBL, 10 * QMF_DOMAIN_ANALYSIS_QMF_BANDS_24,
-              ((8) + (1)))
+              ((2) + (1)))
 
 /*! Analysis states buffer. <br>
     Dimension: #((8) + (1))                                                   */
 C_AALLOC_MEM2(AnaQmfStates32, FIXP_DBL, 10 * QMF_DOMAIN_ANALYSIS_QMF_BANDS_32,
-              ((8) + (1)))
+              ((2) + (1)))
 
 /*! Pointer to real qmf data for each time slot. <br>
     Dimension: #((8) + (1))                                                   */
 C_ALLOC_MEM2(QmfSlotsReal16, FIXP_DBL *,
-             QMF_DOMAIN_TIMESLOTS_16 + QMF_DOMAIN_OV_TIMESLOTS_16, ((8) + (1)))
+             QMF_DOMAIN_TIMESLOTS_16 + QMF_DOMAIN_OV_TIMESLOTS_16, ((2) + (1)))
 
 /*! Pointer to real qmf data for each time slot. <br>
     Dimension: #((8) + (1))                                                   */
 C_ALLOC_MEM2(QmfSlotsReal32, FIXP_DBL *,
-             QMF_DOMAIN_TIMESLOTS_32 + QMF_DOMAIN_OV_TIMESLOTS_32, ((8) + (1)))
+             QMF_DOMAIN_TIMESLOTS_32 + QMF_DOMAIN_OV_TIMESLOTS_32, ((2) + (1)))
 
 /*! Pointer to imaginary qmf data for each time slot. <br>
     Dimension: #((8) + (1))                                                   */
 C_ALLOC_MEM2(QmfSlotsImag16, FIXP_DBL *,
-             QMF_DOMAIN_TIMESLOTS_16 + QMF_DOMAIN_OV_TIMESLOTS_16, ((8) + (1)))
+             QMF_DOMAIN_TIMESLOTS_16 + QMF_DOMAIN_OV_TIMESLOTS_16, ((2) + (1)))
 
 /*! Pointer to imaginary qmf data for each time slot. <br>
     Dimension: #((8) + (1))                                                   */
 C_ALLOC_MEM2(QmfSlotsImag32, FIXP_DBL *,
-             QMF_DOMAIN_TIMESLOTS_32 + QMF_DOMAIN_OV_TIMESLOTS_32, ((8) + (1)))
+             QMF_DOMAIN_TIMESLOTS_32 + QMF_DOMAIN_OV_TIMESLOTS_32, ((2) + (1)))
 
 /*! QMF overlap buffer. <br>
     Dimension: #((8) + (1))                                                   */
 C_AALLOC_MEM2(QmfOverlapBuffer16, FIXP_DBL,
               2 * QMF_DOMAIN_OV_TIMESLOTS_16 * QMF_DOMAIN_MAX_QMF_PROC_BANDS,
-              ((8) + (1)))
+              ((2) + (1)))
 
 /*! QMF overlap buffer. <br>
     Dimension: #((8) + (1))                                                   */
 C_AALLOC_MEM2(QmfOverlapBuffer32, FIXP_DBL,
               2 * QMF_DOMAIN_OV_TIMESLOTS_32 * QMF_DOMAIN_MAX_QMF_PROC_BANDS,
-              ((8) + (1)))
+              ((2) + (1)))
 
 static int FDK_QmfDomain_FreePersistentMemory(HANDLE_FDK_QMF_DOMAIN qd) {
   int err = 0;
   int ch;
 
-  for (ch = 0; ch < ((8) + (1)); ch++) {
+  for (ch = 0; ch < ((2) + (1)); ch++) {
     if (qd->QmfDomainIn[ch].pAnaQmfStates) {
       if (qd->globalConf.nBandsAnalysis == QMF_DOMAIN_ANALYSIS_QMF_BANDS_16) {
         FreeAnaQmfStates16(&qd->QmfDomainIn[ch].pAnaQmfStates);
@@ -247,7 +247,7 @@ static int FDK_QmfDomain_FreePersistentMemory(HANDLE_FDK_QMF_DOMAIN qd) {
     }
   }
 
-  for (ch = 0; ch < ((8) + (1)); ch++) {
+  for (ch = 0; ch < ((2) + (1)); ch++) {
     if (qd->QmfDomainOut[ch].pSynQmfStates) {
       FreeSynQmfStates(&qd->QmfDomainOut[ch].pSynQmfStates);
     }
@@ -261,7 +261,7 @@ static int FDK_QmfDomain_AllocatePersistentMemory(HANDLE_FDK_QMF_DOMAIN qd) {
   int ch;
   HANDLE_FDK_QMF_DOMAIN_GC gc = &qd->globalConf;
 
-  if ((gc->nInputChannels > ((8) + (1))) || (gc->nOutputChannels > ((8) + (1))))
+  if ((gc->nInputChannels > ((2) + (1))) || (gc->nOutputChannels > ((2) + (1))))
     return err = 1;
   for (ch = 0; ch < gc->nInputChannels; ch++) {
     int size;
@@ -806,11 +806,11 @@ static void FDK_QmfDomain_ClearConfigured(HANDLE_FDK_QMF_DOMAIN_GC hgc) {
 static void FDK_QmfDomain_ClearFilterBank(HANDLE_FDK_QMF_DOMAIN hqd) {
   int ch;
 
-  for (ch = 0; ch < ((8) + (1)); ch++) {
+  for (ch = 0; ch < ((2) + (1)); ch++) {
     FDKmemclear(&hqd->QmfDomainIn[ch].fb, sizeof(hqd->QmfDomainIn[ch].fb));
   }
 
-  for (ch = 0; ch < ((8) + (1)); ch++) {
+  for (ch = 0; ch < ((2) + (1)); ch++) {
     FDKmemclear(&hqd->QmfDomainOut[ch].fb, sizeof(hqd->QmfDomainIn[ch].fb));
   }
 }

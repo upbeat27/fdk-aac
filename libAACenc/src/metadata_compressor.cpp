@@ -109,7 +109,7 @@ amm-info@iis.fraunhofer.de
 
 /*----------------- defines ----------------------*/
 
-#define MAX_DRC_CHANNELS (8)       /*!< Max number of audio input channels. */
+#define MAX_DRC_CHANNELS (2)       /*!< Max number of audio input channels. */
 #define DOWNMIX_SHIFT (3)          /*!< Max 8 channel. */
 #define WEIGHTING_FILTER_SHIFT (2) /*!< Scaling used in weighting filter. */
 

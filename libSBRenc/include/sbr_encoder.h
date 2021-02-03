@@ -356,7 +356,7 @@ UINT sbrEncoder_IsSingleRatePossible(AUDIO_OBJECT_TYPE aot);
  * \return                 0 on success, and non-zero if failed.
  */
 INT sbrEncoder_Init(HANDLE_SBR_ENCODER hSbrEncoder,
-                    SBR_ELEMENT_INFO elInfo[(8)], int noElements,
+                    SBR_ELEMENT_INFO elInfo[(2)], int noElements,
                     INT_PCM *inputBuffer, UINT inputBufferBufSize,
                     INT *coreBandwidth, INT *inputBufferOffset,
                     INT *numChannels, const UINT syntaxFlags, INT *sampleRate,
@@ -392,8 +392,8 @@ void sbrEncoder_Close(HANDLE_SBR_ENCODER *phEbrEncoder);
  * \return              0 on success, and non-zero if failed.
  */
 INT sbrEncoder_EncodeFrame(HANDLE_SBR_ENCODER hEnvEncoder, INT_PCM *samples,
-                           UINT samplesBufSize, UINT sbrDataBits[(8)],
-                           UCHAR sbrData[(8)][MAX_PAYLOAD_SIZE]);
+                           UINT samplesBufSize, UINT sbrDataBits[(2)],
+                           UCHAR sbrData[(2)][MAX_PAYLOAD_SIZE]);
 
 /**
  * \brief               Write SBR headers of one SBR element.

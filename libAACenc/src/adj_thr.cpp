@@ -1318,10 +1318,10 @@ enough, the difference can be distributed among the scale factor bands. New
 thresholds can be derived from this pe-difference
 *****************************************************************************/
 static void FDKaacEnc_correctThresh(
-    const CHANNEL_MAPPING *const cm, QC_OUT_ELEMENT *const qcElement[((8))],
+    const CHANNEL_MAPPING *const cm, QC_OUT_ELEMENT *const qcElement[((2))],
     const PSY_OUT_ELEMENT *const psyOutElement[((8))],
-    UCHAR ahFlag[((8))][(2)][MAX_GROUPED_SFB],
-    const FIXP_DBL thrExp[((8))][(2)][MAX_GROUPED_SFB], const FIXP_DBL redVal_m,
+    UCHAR ahFlag[((2))][(2)][MAX_GROUPED_SFB],
+    const FIXP_DBL thrExp[((2))][(2)][MAX_GROUPED_SFB], const FIXP_DBL redVal_m,
     const SCHAR redVal_e, const INT deltaPe, const INT processElements,
     const INT elementOffset) {
   INT ch, sfb, sfbGrp;
@@ -1330,7 +1330,7 @@ static void FDKaacEnc_correctThresh(
   PE_CHANNEL_DATA *peChanData;
   FIXP_DBL thrFactorLdData;
   FIXP_DBL sfbEnLdData, sfbThrLdData, sfbThrReducedLdData;
-  FIXP_DBL *sfbPeFactorsLdData[((8))][(2)];
+  FIXP_DBL *sfbPeFactorsLdData[((2))][(2)];
   FIXP_DBL(*sfbNActiveLinesLdData)[(2)][MAX_GROUPED_SFB];
 
   INT normFactorInt;
@@ -1512,9 +1512,9 @@ static void FDKaacEnc_correctThresh(
                   reducing minSnr
 *****************************************************************************/
 static void FDKaacEnc_reduceMinSnr(
-    const CHANNEL_MAPPING *const cm, QC_OUT_ELEMENT *const qcElement[((8))],
-    const PSY_OUT_ELEMENT *const psyOutElement[((8))],
-    const UCHAR ahFlag[((8))][(2)][MAX_GROUPED_SFB], const INT desiredPe,
+    const CHANNEL_MAPPING *const cm, QC_OUT_ELEMENT *const qcElement[((2))],
+    const PSY_OUT_ELEMENT *const psyOutElement[((2))],
+    const UCHAR ahFlag[((2))][(2)][MAX_GROUPED_SFB], const INT desiredPe,
     INT *const redPeGlobal, const INT processElements, const INT elementOffset)
 
 {
@@ -1605,10 +1605,10 @@ bail:
                   bands have to be quantized to zero
 *****************************************************************************/
 static void FDKaacEnc_allowMoreHoles(
-    const CHANNEL_MAPPING *const cm, QC_OUT_ELEMENT *const qcElement[((8))],
-    const PSY_OUT_ELEMENT *const psyOutElement[((8))],
-    const ATS_ELEMENT *const AdjThrStateElement[((8))],
-    UCHAR ahFlag[((8))][(2)][MAX_GROUPED_SFB], const INT desiredPe,
+    const CHANNEL_MAPPING *const cm, QC_OUT_ELEMENT *const qcElement[((2))],
+    const PSY_OUT_ELEMENT *const psyOutElement[((2))],
+    const ATS_ELEMENT *const AdjThrStateElement[((2))],
+    UCHAR ahFlag[((2))][(2)][MAX_GROUPED_SFB], const INT desiredPe,
     const INT currentPe, const int processElements, const int elementOffset) {
   INT elementId;
   INT nElements = elementOffset + processElements;
@@ -1693,10 +1693,10 @@ static void FDKaacEnc_allowMoreHoles(
     INT ch, sfb, sfbGrp;
     INT minSfb, maxSfb;
     INT enIdx, ahCnt, done;
-    INT startSfb[(8)];
-    INT sfbCnt[(8)];
-    INT sfbPerGroup[(8)];
-    INT maxSfbPerGroup[(8)];
+    INT startSfb[(2)];
+    INT sfbCnt[(2)];
+    INT sfbPerGroup[(2)];
+    INT maxSfbPerGroup[(2)];
     FIXP_DBL avgEn;
     FIXP_DBL minEnLD64;
     FIXP_DBL avgEnLD64;
@@ -1888,9 +1888,9 @@ the thresholds
 *****************************************************************************/
 static void FDKaacEnc_adaptThresholdsToPe(
     const CHANNEL_MAPPING *const cm,
-    ATS_ELEMENT *const AdjThrStateElement[((8))],
-    QC_OUT_ELEMENT *const qcElement[((8))],
-    const PSY_OUT_ELEMENT *const psyOutElement[((8))], const INT desiredPe,
+    ATS_ELEMENT *const AdjThrStateElement[((2))],
+    QC_OUT_ELEMENT *const qcElement[((2))],
+    const PSY_OUT_ELEMENT *const psyOutElement[((2))], const INT desiredPe,
     const INT maxIter2ndGuess, const INT processElements,
     const INT elementOffset) {
   FIXP_DBL reductionValue_m;
@@ -2802,8 +2802,8 @@ functionname: FDKaacEnc_AdjustThresholds
 description:  adjust thresholds
 *****************************************************************************/
 void FDKaacEnc_AdjustThresholds(
-    ADJ_THR_STATE *const hAdjThr, QC_OUT_ELEMENT *const qcElement[((8))],
-    QC_OUT *const qcOut, const PSY_OUT_ELEMENT *const psyOutElement[((8))],
+    ADJ_THR_STATE *const hAdjThr, QC_OUT_ELEMENT *const qcElement[((2))],
+    QC_OUT *const qcOut, const PSY_OUT_ELEMENT *const psyOutElement[((2))],
     const INT CBRbitrateMode, const CHANNEL_MAPPING *const cm) {
   int i;
 
@@ -2904,7 +2904,7 @@ void FDKaacEnc_AdjThrClose(ADJ_THR_STATE **phAdjThr) {
   ADJ_THR_STATE *hAdjThr = *phAdjThr;
 
   if (hAdjThr != NULL) {
-    for (i = 0; i < ((8)); i++) {
+    for (i = 0; i < ((2)); i++) {
       if (hAdjThr->adjThrStateElem[i] != NULL) {
         FreeRam_aacEnc_AdjThrStateElement(&hAdjThr->adjThrStateElem[i]);
       }

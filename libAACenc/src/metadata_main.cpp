@@ -463,7 +463,7 @@ FDK_METADATA_ERROR FDK_MetadataEnc_Init(
        delay -= (INT)frameLength, nFrames++)
     ;
 
-  if ((nChannels > (8)) || (nChannels > hMetaData->maxChannels) ||
+  if ((nChannels > (2)) || (nChannels > hMetaData->maxChannels) ||
       ((-delay) > MAX_DRC_FRAMELEN) || nFrames >= MAX_DELAY_FRAMES) {
     err = METADATA_INIT_ERROR;
     goto bail;
@@ -533,8 +533,8 @@ FDK_METADATA_ERROR FDK_MetadataEnc_Init(
           break;
         default:;
       }
-      C_ALLOC_SCRATCH_START(scratch_audioDelayBuffer, INT_PCM, (8));
-      FDKmemclear(scratch_audioDelayBuffer, (8) * sizeof(INT_PCM));
+      C_ALLOC_SCRATCH_START(scratch_audioDelayBuffer, INT_PCM, (2));
+      FDKmemclear(scratch_audioDelayBuffer, (2) * sizeof(INT_PCM));
 
       i = (hMetaData->nChannels > (INT)nChannels)
               ? 0
@@ -551,7 +551,7 @@ FDK_METADATA_ERROR FDK_MetadataEnc_Init(
         i += (hMetaData->nChannels > (INT)nChannels) ? 1 : -1;
       } while ((i < hMetaData->nAudioDataDelay) && (i >= 0));
 
-      C_ALLOC_SCRATCH_END(scratch_audioDelayBuffer, INT_PCM, (8));
+      C_ALLOC_SCRATCH_END(scratch_audioDelayBuffer, INT_PCM, (2));
     }
     FDKmemclear(hMetaData->metaDataBuffer, sizeof(hMetaData->metaDataBuffer));
     hMetaData->metaDataDelayIdx = 0;

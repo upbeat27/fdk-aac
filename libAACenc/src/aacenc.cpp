@@ -444,7 +444,7 @@ AAC_ENCODER_ERROR FDKaacEnc_Initialize(
   /******************* sanity checks *******************/
 
   /* check config structure */
-  if (config->nChannels < 1 || config->nChannels > (8)) {
+  if (config->nChannels < 1 || config->nChannels > (2)) {
     return AAC_ENC_UNSUPPORTED_CHANNELCONFIG;
   }
 

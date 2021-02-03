@@ -137,7 +137,7 @@ AAC_ENCODER_ERROR FDKaacEnc_QCMain(QC_STATE *RESTRICT hQC, PSY_OUT **psyOut,
 
 AAC_ENCODER_ERROR FDKaacEnc_updateFillBits(CHANNEL_MAPPING *cm,
                                            QC_STATE *qcKernel,
-                                           ELEMENT_BITS *RESTRICT elBits[((8))],
+                                           ELEMENT_BITS *RESTRICT elBits[((2))],
                                            QC_OUT **qcOut);
 
 void FDKaacEnc_updateBitres(CHANNEL_MAPPING *cm, QC_STATE *qcKernel,

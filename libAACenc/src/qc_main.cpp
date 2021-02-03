@@ -502,7 +502,7 @@ AAC_ENCODER_ERROR FDKaacEnc_AdjustBitrate(
 
 **********************************************************************************/
 static AAC_ENCODER_ERROR FDKaacEnc_distributeElementDynBits(
-    QC_STATE* hQC, QC_OUT_ELEMENT* qcElement[((8))], CHANNEL_MAPPING* cm,
+    QC_STATE* hQC, QC_OUT_ELEMENT* qcElement[((2))], CHANNEL_MAPPING* cm,
     INT codeBits) {
   INT i;             /* counter variable */
   INT totalBits = 0; /* sum of bits over all elements */
@@ -614,7 +614,7 @@ static int FDKaacEnc_getMinimalStaticBitdemand(CHANNEL_MAPPING* cm,
 
 static AAC_ENCODER_ERROR FDKaacEnc_prepareBitDistribution(
     QC_STATE* hQC, PSY_OUT** psyOut, QC_OUT** qcOut, CHANNEL_MAPPING* cm,
-    QC_OUT_ELEMENT* qcElement[(1)][((8))], INT avgTotalBits,
+    QC_OUT_ELEMENT* qcElement[(1)][((2))], INT avgTotalBits,
     INT* totalAvailableBits, INT* avgTotalDynBits) {
   int i;
   /* get maximal allowed dynamic bits */
@@ -675,7 +675,7 @@ static AAC_ENCODER_ERROR FDKaacEnc_prepareBitDistribution(
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static AAC_ENCODER_ERROR FDKaacEnc_updateUsedDynBits(
-    INT* sumDynBitsConsumed, QC_OUT_ELEMENT* qcElement[((8))],
+    INT* sumDynBitsConsumed, QC_OUT_ELEMENT* qcElement[((2))],
     CHANNEL_MAPPING* cm) {
   INT i;
 
@@ -710,7 +710,7 @@ static INT FDKaacEnc_getTotalConsumedDynBits(QC_OUT** qcOut, INT nSubFrames) {
 }
 
 static INT FDKaacEnc_getTotalConsumedBits(QC_OUT** qcOut,
-                                          QC_OUT_ELEMENT* qcElement[(1)][((8))],
+                                          QC_OUT_ELEMENT* qcElement[(1)][((2))],
                                           CHANNEL_MAPPING* cm, INT globHdrBits,
                                           INT nSubFrames) {
   int c, i;
@@ -814,7 +814,7 @@ AAC_ENCODER_ERROR FDKaacEnc_QCMain(QC_STATE* RESTRICT hQC, PSY_OUT** psyOut,
 
   /*-------------------------------------------- */
   /* helper pointer */
-  QC_OUT_ELEMENT* qcElement[(1)][((8))];
+  QC_OUT_ELEMENT* qcElement[(1)][((2))];
 
   /* work on a copy of qcChannel and qcElement */
   for (i = 0; i < cm->nElements; i++) {
@@ -851,10 +851,10 @@ AAC_ENCODER_ERROR FDKaacEnc_QCMain(QC_STATE* RESTRICT hQC, PSY_OUT** psyOut,
   } /* -end- sub frame counter */
 
   /*-------------------------------------------- */
-  INT iterations[(1)][((8))];
-  INT chConstraintsFulfilled[(1)][((8))][(2)];
-  INT calculateQuant[(1)][((8))][(2)];
-  INT constraintsFulfilled[(1)][((8))];
+  INT iterations[(1)][((2))];
+  INT chConstraintsFulfilled[(1)][((2))][(2)];
+  INT calculateQuant[(1)][((2))][(2)];
+  INT constraintsFulfilled[(1)][((2))];
   /*-------------------------------------------- */
 
   /* for ( all sub frames ) ... */
@@ -1167,7 +1167,7 @@ static AAC_ENCODER_ERROR FDKaacEnc_reduceBitConsumption(
 
 AAC_ENCODER_ERROR FDKaacEnc_updateFillBits(CHANNEL_MAPPING* cm,
                                            QC_STATE* qcKernel,
-                                           ELEMENT_BITS* RESTRICT elBits[((8))],
+                                           ELEMENT_BITS* RESTRICT elBits[((2))],
                                            QC_OUT** qcOut) {
   switch (qcKernel->bitrateMode) {
     case QCDATA_BR_MODE_SFR:
@@ -1504,10 +1504,10 @@ void FDKaacEnc_QCClose(QC_STATE** phQCstate, QC_OUT** phQC) {
     for (n = 0; n < (1); n++) {
       if (phQC[n] != NULL) {
         QC_OUT* hQC = phQC[n];
-        for (i = 0; i < (8); i++) {
+        for (i = 0; i < (2); i++) {
         }
 
-        for (i = 0; i < ((8)); i++) {
+        for (i = 0; i < ((2)); i++) {
           if (hQC->qcElement[i]) FreeRam_aacEnc_QCelement(&hQC->qcElement[i]);
         }
 
@@ -1525,7 +1525,7 @@ void FDKaacEnc_QCClose(QC_STATE** phQCstate, QC_OUT** phQC) {
       if (hQCstate->hBitCounter != NULL)
         FDKaacEnc_BCClose(&hQCstate->hBitCounter);
 
-      for (i = 0; i < ((8)); i++) {
+      for (i = 0; i < ((2)); i++) {
         if (hQCstate->elementBits[i] != NULL) {
           FreeRam_aacEnc_ElementBits(&hQCstate->elementBits[i]);
         }

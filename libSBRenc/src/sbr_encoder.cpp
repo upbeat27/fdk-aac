@@ -768,14 +768,14 @@ void sbrEncoder_Close(HANDLE_SBR_ENCODER *phSbrEncoder) {
   if (hSbrEncoder != NULL) {
     int el, ch;
 
-    for (el = 0; el < (8); el++) {
+    for (el = 0; el < (2); el++) {
       if (hSbrEncoder->sbrElement[el] != NULL) {
         sbrEncoder_ElementClose(&hSbrEncoder->sbrElement[el]);
       }
     }
 
     /* Close sbr Channels */
-    for (ch = 0; ch < (8); ch++) {
+    for (ch = 0; ch < (2); ch++) {
       if (hSbrEncoder->pSbrChannel[ch]) {
         sbrEncoder_ChannelClose(hSbrEncoder->pSbrChannel[ch]);
         FreeRam_SbrChannel(&hSbrEncoder->pSbrChannel[ch]);
@@ -1580,7 +1580,7 @@ bail:
 }
 
 static INT FDKsbrEnc_Reallocate(HANDLE_SBR_ENCODER hSbrEncoder,
-                                SBR_ELEMENT_INFO elInfo[(8)],
+                                SBR_ELEMENT_INFO elInfo[(2)],
                                 const INT noElements) {
   INT totalCh = 0;
   INT totalQmf = 0;
@@ -2064,7 +2064,7 @@ static INT sbrEncoder_Init_delay(
 
 *****************************************************************************/
 INT sbrEncoder_Init(HANDLE_SBR_ENCODER hSbrEncoder,
-                    SBR_ELEMENT_INFO elInfo[(8)], int noElements,
+                    SBR_ELEMENT_INFO elInfo[(2)], int noElements,
                     INT_PCM *inputBuffer, UINT inputBufferBufSize,
                     INT *coreBandwidth, INT *inputBufferOffset,
                     INT *numChannels, const UINT syntaxFlags,
@@ -2073,7 +2073,7 @@ INT sbrEncoder_Init(HANDLE_SBR_ENCODER hSbrEncoder,
                     int transformFactor, const int headerPeriod,
                     ULONG statesInitFlag) {
   HANDLE_ERROR_INFO errorInfo = noError;
-  sbrConfiguration sbrConfig[(8)];
+  sbrConfiguration sbrConfig[(2)];
   INT error = 0;
   INT lowestBandwidth;
   /* Save input parameters */
@@ -2382,8 +2382,8 @@ bail:
 }
 
 INT sbrEncoder_EncodeFrame(HANDLE_SBR_ENCODER hSbrEncoder, INT_PCM *samples,
-                           UINT samplesBufSize, UINT sbrDataBits[(8)],
-                           UCHAR sbrData[(8)][MAX_PAYLOAD_SIZE]) {
+                           UINT samplesBufSize, UINT sbrDataBits[(2)],
+                           UCHAR sbrData[(2)][MAX_PAYLOAD_SIZE]) {
   INT error;
   int el;
 

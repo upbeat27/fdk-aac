@@ -267,9 +267,9 @@ typedef FDK_QMF_DOMAIN_OUT *HANDLE_FDK_QMF_DOMAIN_OUT;
 typedef struct {
   FDK_QMF_DOMAIN_GC globalConf; /*!< Global configuration structure. */
   FDK_QMF_DOMAIN_IN
-  QmfDomainIn[((8) + (1))]; /*!< Array of QMF domain input structures */
+  QmfDomainIn[((2) + (1))]; /*!< Array of QMF domain input structures */
   FDK_QMF_DOMAIN_OUT
-  QmfDomainOut[((8) + (1))]; /*!< Array of QMF domain output structures */
+  QmfDomainOut[((2) + (1))]; /*!< Array of QMF domain output structures */
 } FDK_QMF_DOMAIN;
 typedef FDK_QMF_DOMAIN *HANDLE_FDK_QMF_DOMAIN;
 

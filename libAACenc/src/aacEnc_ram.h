@@ -173,12 +173,12 @@ struct AAC_ENC {
 #define MERGE_GAIN_LOOK_UP_SIZE (sizeof(INT) * MAX_SFB_LONG)
 
 /* Size of AhFlag buffer in function FDKaacEnc_adaptThresholdsToPe() */
-#define ADJ_THR_AH_FLAG_SIZE (sizeof(UCHAR) * ((8)) * (2) * MAX_GROUPED_SFB)
+#define ADJ_THR_AH_FLAG_SIZE (sizeof(UCHAR) * ((2)) * (2) * MAX_GROUPED_SFB)
 /* Size of ThrExp buffer in function FDKaacEnc_adaptThresholdsToPe() */
-#define ADJ_THR_THR_EXP_SIZE (sizeof(FIXP_DBL) * ((8)) * (2) * MAX_GROUPED_SFB)
+#define ADJ_THR_THR_EXP_SIZE (sizeof(FIXP_DBL) * ((2)) * (2) * MAX_GROUPED_SFB)
 /* Size of sfbNActiveLinesLdData buffer in function FDKaacEnc_correctThresh() */
 #define ADJ_THR_ACT_LIN_LD_DATA_SIZE \
-  (sizeof(FIXP_DBL) * ((8)) * (2) * MAX_GROUPED_SFB)
+  (sizeof(FIXP_DBL) * ((2)) * (2) * MAX_GROUPED_SFB)
 /* Total amount of dynamic buffer needed in adjust thresholds functionality */
 #define ADJ_THR_SIZE \
   (ADJ_THR_AH_FLAG_SIZE + ADJ_THR_THR_EXP_SIZE + ADJ_THR_ACT_LIN_LD_DATA_SIZE)
@@ -198,7 +198,7 @@ struct AAC_ENC {
  +++++++++++++++++++++++++++++++++++++++++++++++++++++
 */
 
-#define BUF_SIZE_0 (ALIGN_SIZE(sizeof(QC_OUT_CHANNEL)) * (8))
+#define BUF_SIZE_0 (ALIGN_SIZE(sizeof(QC_OUT_CHANNEL)) * (2))
 #define BUF_SIZE_1                                                           \
   (ALIGN_SIZE(maxSize(maxSize(sizeof(PSY_DYNAMIC),                           \
                               (BIT_LOOK_UP_SIZE + MERGE_GAIN_LOOK_UP_SIZE)), \
