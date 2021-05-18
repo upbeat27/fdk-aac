@@ -364,8 +364,8 @@ it. Hence, a fully platform-independant way to use alignment is not supported.
 /**************************************************
  * Code Section macros
  **************************************************/
-#define LNK_SECTION_CODE_L1
-#define LNK_SECTION_CODE_L2
+#define LNK_SECTION_CODE_L1	__attribute__((section(".itcm_text")))
+#define LNK_SECTION_CODE_L2	__attribute__((section(".itcm_text")))
 #define LNK_SECTION_INITCODE
 
 /* Memory section macros. */
